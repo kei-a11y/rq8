@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}リクエストフォーム{% endblock %}</title>
+    <style>
+        /* 全体の背景とフォント */
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        main {
+            max-width: 35rem;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        form p {
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: block;       /* ブロックにして中央寄せ可能に */
+            margin: 1rem auto;    /* 上下マージン1rem、左右自動中央 */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .success-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4CAF50;
+        }
+
+        a.button-link {
+            text-decoration: none;
+        }
+
+        /* Excelボタンやリンクの簡単なスタイル */
+        a.button-link button {
+            margin-right: 0.5rem;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+<!---    <header>
+        リクエストフォーム
+    </header>--->
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

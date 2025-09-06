@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}自動化リクエストフォーム{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>リクエストフォーム</title>
+    <script>
+        function toggleOtherIndustry() {
+            const industrySelect = document.getElementById("id_industry");
+            const otherField = document.getElementById("other_industry_field");
+            if (industrySelect.value === "その他") {
+                otherField.style.display = "block";
+            } else {
+                otherField.style.display = "none";
+                document.getElementById("id_other_industry").value = "";
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const industrySelect = document.getElementById("id_industry");
+            industrySelect.addEventListener("change", toggleOtherIndustry);
+            toggleOtherIndustry();
+        });
+    </script>
+</head>
+<body>
+    <h1 style="font-size: 2rem; text-align: left;">リクエストフォーム</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            {{ form.system_name.label_tag }}<br>
+            {{ form.system_name }}
+        </p>
+        <p>
+            {{ form.manual_file.label_tag }}<br>
+            {{ form.manual_file }}
+        </p>
+
+        <p>
+            {{ form.industry.label_tag }}<br>
+            {{ form.industry }}
+        </p>
+        <!-- その他業態用フィールド -->
+        <p id="other_industry_field" style="display: none;">
+            {{ form.other_industry.label_tag }}<br>
+            {{ form.other_industry }}
+        </p>
+
+<br>
+        <p margin: auto; >====下記の入力は任意です<br>　　（見込みがある場合、個別に連絡を差し上げる場合があります）====</p>
+        <p>
+            {{ form.contact_info.label_tag }}<br>
+            {{ form.contact_info }}
+        </p>
+
+        <p>
+            {{ form.other.label_tag }}<br>
+            {{ form.other }}
+        </p>
+        <button type="submit">送信</button>
+    </form>
+</body>
+</html>
+
+{% endblock %}
